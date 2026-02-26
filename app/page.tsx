@@ -2,11 +2,10 @@
 
 import React, { useState, useEffect, useRef, useCallback } from 'react'
 import { HiOutlineBars3, HiXMark, HiChevronDown, HiChevronUp, HiPlay, HiCheck, HiArrowRight } from 'react-icons/hi2'
-import { FiBrain, FiCode, FiFileText, FiShield, FiMonitor, FiMessageCircle, FiStar } from 'react-icons/fi'
+import { FiCode, FiFileText, FiShield, FiMonitor, FiMessageCircle, FiStar } from 'react-icons/fi'
 import { BiLogoGoogle } from 'react-icons/bi'
 import { RiTwitterXLine, RiLinkedinFill, RiGithubFill, RiDiscordFill } from 'react-icons/ri'
-import { TbBrandApple, TbBrandNetflix, TbBrandAmazon, TbBrandMeta } from 'react-icons/tb'
-import { SiMicrosoft } from 'react-icons/si'
+import { TbBrain, TbBrandApple, TbBrandNetflix, TbBrandAmazon, TbBrandMeta, TbBrandWindows } from 'react-icons/tb'
 
 /* ─── Animated Counter Hook ─── */
 function useCountUp(end: number, duration: number = 2000, startOnView: boolean = true) {
@@ -89,7 +88,7 @@ const NAV_LINKS = [
 
 const FEATURES = [
   {
-    icon: FiBrain,
+    icon: TbBrain,
     title: 'Real-Time AI Answers',
     description: 'Get instant, context-aware answers during live interviews. Avia listens and generates responses in real-time.',
     gradient: 'from-cyan-500 to-blue-500',
@@ -143,7 +142,7 @@ const STEPS = [
     number: '03',
     title: 'Get AI Answers',
     description: 'Receive real-time AI-generated answers displayed in a discreet overlay. Copy or use them naturally.',
-    icon: FiBrain,
+    icon: TbBrain,
   },
 ]
 
@@ -346,7 +345,7 @@ export default function Page() {
               {/* Logo */}
               <div className="flex items-center gap-2">
                 <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-cyan-500 to-blue-600 flex items-center justify-center">
-                  <FiBrain className="w-5 h-5 text-white" />
+                  <TbBrain className="w-5 h-5 text-white" />
                 </div>
                 <span className="text-xl font-bold bg-gradient-to-r from-cyan-400 to-blue-500 bg-clip-text text-transparent">
                   Avia
@@ -516,7 +515,7 @@ export default function Page() {
                       </div>
                       <div className="bg-gradient-to-r from-cyan-500/10 to-blue-500/10 rounded-lg p-3 border border-cyan-500/20">
                         <div className="text-xs text-cyan-400 font-medium mb-1 flex items-center gap-1">
-                          <FiBrain className="w-3 h-3" /> Avia AI Response
+                          <TbBrain className="w-3 h-3" /> Avia AI Response
                         </div>
                         <div className="text-sm text-gray-300 space-y-1">
                           <p>I would start by analyzing the query execution plan...</p>
@@ -565,7 +564,7 @@ export default function Page() {
                   <TbBrandAmazon className="w-7 h-7" /> Amazon
                 </div>
                 <div className="flex items-center gap-2 text-gray-400 text-xl font-semibold shrink-0">
-                  <SiMicrosoft className="w-6 h-6" /> Microsoft
+                  <TbBrandWindows className="w-6 h-6" /> Microsoft
                 </div>
                 <div className="flex items-center gap-2 text-gray-400 text-xl font-semibold shrink-0">
                   <TbBrandApple className="w-7 h-7" /> Apple
@@ -727,7 +726,7 @@ export default function Page() {
                 <div className="p-6">
                   <div className="flex items-center gap-2 mb-4">
                     <div className="w-8 h-8 rounded-full bg-gradient-to-br from-cyan-500 to-blue-600 flex items-center justify-center">
-                      <FiBrain className="w-4 h-4 text-white" />
+                      <TbBrain className="w-4 h-4 text-white" />
                     </div>
                     <div>
                       <div className="text-sm font-medium text-cyan-400">Avia AI</div>
@@ -997,7 +996,7 @@ export default function Page() {
               <div className="col-span-2 md:col-span-1">
                 <div className="flex items-center gap-2 mb-4">
                   <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-cyan-500 to-blue-600 flex items-center justify-center">
-                    <FiBrain className="w-5 h-5 text-white" />
+                    <TbBrain className="w-5 h-5 text-white" />
                   </div>
                   <span className="text-xl font-bold bg-gradient-to-r from-cyan-400 to-blue-500 bg-clip-text text-transparent">
                     Avia
