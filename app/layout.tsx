@@ -9,8 +9,8 @@ import { AgentInterceptorProvider } from '@/components/AgentInterceptorProvider'
 const inter = Inter({ subsets: ['latin'] })
 
 export const metadata: Metadata = {
-  title: 'Next.js App',
-  description: 'Built with Next.js, React, and Tailwind CSS',
+  title: 'Avia - AI Interview Copilot | Ace Every Interview',
+  description: 'Avia is your invisible AI interview copilot. Get real-time answers, coding support, and personalized coaching - completely undetectable.',
   icons: {
     icon: '/lyzr.png',
   },
