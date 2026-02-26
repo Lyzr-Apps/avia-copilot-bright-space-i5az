@@ -1,8 +1,9 @@
 'use client'
 
 import React, { useState, useEffect, useRef, useCallback } from 'react'
+import { useRouter } from 'next/navigation'
 import { HiOutlineBars3, HiXMark, HiChevronDown, HiChevronUp, HiPlay, HiCheck, HiArrowRight } from 'react-icons/hi2'
-import { FiCode, FiFileText, FiShield, FiMonitor, FiMessageCircle, FiStar, FiUser, FiLogOut, FiMail } from 'react-icons/fi'
+import { FiCode, FiFileText, FiShield, FiMonitor, FiMessageCircle, FiStar, FiUser, FiMail } from 'react-icons/fi'
 import { BiLogoGoogle } from 'react-icons/bi'
 import { RiTwitterXLine, RiLinkedinFill, RiGithubFill, RiDiscordFill } from 'react-icons/ri'
 import { TbBrain, TbBrandApple, TbBrandNetflix, TbBrandAmazon, TbBrandMeta, TbBrandWindows } from 'react-icons/tb'
@@ -173,7 +174,7 @@ const PRICING_PLANS = [
     monthlyPrice: 0,
     annualPrice: 0,
     description: 'Perfect for getting started',
-    features: ['5 interview sessions/month', 'Basic AI answers', 'Email support'],
+    features: ['15 min free session', 'Basic AI answers', 'Email support'],
     cta: 'Get Started Free',
     highlighted: false,
   },
@@ -285,6 +286,7 @@ const GRADIENT_KEYFRAMES = `
 
 /* ─── Page Component ─── */
 export default function Page() {
+  const router = useRouter()
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
   const [activeDemoTab, setActiveDemoTab] = useState('system-design')
   const [demoTrigger, setDemoTrigger] = useState(true)
@@ -297,9 +299,6 @@ export default function Page() {
   const [isLoggedIn, setIsLoggedIn] = useState(false)
   const [signInEmail, setSignInEmail] = useState('')
   const [userEmail, setUserEmail] = useState('')
-  const [showUserMenu, setShowUserMenu] = useState(false)
-  const userMenuRef = useRef<HTMLDivElement>(null)
-
   // Persist login state
   useEffect(() => {
     const stored = localStorage.getItem('avia_user')
@@ -307,17 +306,6 @@ export default function Page() {
       setIsLoggedIn(true)
       setUserEmail(stored)
     }
-  }, [])
-
-  // Close user menu on outside click
-  useEffect(() => {
-    const handleClickOutside = (e: MouseEvent) => {
-      if (userMenuRef.current && !userMenuRef.current.contains(e.target as Node)) {
-        setShowUserMenu(false)
-      }
-    }
-    document.addEventListener('mousedown', handleClickOutside)
-    return () => document.removeEventListener('mousedown', handleClickOutside)
   }, [])
 
   // Prevent body scroll when modal is open
@@ -337,13 +325,6 @@ export default function Page() {
     setUserEmail(displayEmail)
     setShowSignIn(false)
     setSignInEmail('')
-  }, [])
-
-  const handleSignOut = useCallback(() => {
-    localStorage.removeItem('avia_user')
-    setIsLoggedIn(false)
-    setUserEmail('')
-    setShowUserMenu(false)
   }, [])
 
   const stat1 = useCountUp(50, 2000)
@@ -427,29 +408,14 @@ export default function Page() {
               {/* Desktop CTA */}
               <div className="hidden md:flex items-center gap-4">
                 {isLoggedIn ? (
-                  <div className="relative" ref={userMenuRef}>
+                  <div className="relative">
                     <button
-                      onClick={() => setShowUserMenu(!showUserMenu)}
+                      onClick={() => router.push('/dashboard')}
                       className="flex items-center gap-2 px-4 py-2.5 text-sm font-medium rounded-lg bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-400 hover:to-blue-500 text-white transition-all duration-300 shadow-lg shadow-cyan-500/25 hover:shadow-cyan-500/40"
                     >
                       <FiUser className="w-4 h-4" />
                       Dashboard
                     </button>
-                    {showUserMenu && (
-                      <div className="absolute right-0 mt-2 w-56 rounded-xl bg-[#0d1117] border border-white/10 shadow-2xl shadow-black/50 overflow-hidden z-50">
-                        <div className="px-4 py-3 border-b border-white/5">
-                          <p className="text-xs text-gray-500">Signed in as</p>
-                          <p className="text-sm text-white truncate">{userEmail}</p>
-                        </div>
-                        <button
-                          onClick={handleSignOut}
-                          className="w-full flex items-center gap-2 px-4 py-3 text-sm text-gray-400 hover:text-white hover:bg-white/5 transition-colors duration-200"
-                        >
-                          <FiLogOut className="w-4 h-4" />
-                          Sign Out
-                        </button>
-                      </div>
-                    )}
                   </div>
                 ) : (
                   <button
@@ -490,7 +456,7 @@ export default function Page() {
               ))}
               {isLoggedIn ? (
                 <button
-                  onClick={() => { setMobileMenuOpen(false) }}
+                  onClick={() => { setMobileMenuOpen(false); router.push('/dashboard') }}
                   className="w-full flex items-center justify-center gap-2 px-5 py-2.5 text-sm font-medium rounded-lg bg-gradient-to-r from-cyan-500 to-blue-600 text-white mt-4"
                 >
                   <FiUser className="w-4 h-4" />
